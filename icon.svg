@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#12263F"/>
+  <!-- 360 ring: an almost-closed loop with an arrowhead -->
+  <path d="M256 92a164 164 0 1 1-142.03 82" fill="none" stroke="#2FC4B2" stroke-width="30" stroke-linecap="round"/>
+  <path d="M64 186 114 174 127 224" fill="none" stroke="#2FC4B2" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- isometric package -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M256 168 340 214v96l-84 46-84-46v-96z"/>
+    <path d="M172 214l84 46 84-46M256 260v96"/>
+  </g>
+  <path d="M214 191l84 46" stroke="#2FC4B2" stroke-width="16" stroke-linecap="round"/>
+</svg>

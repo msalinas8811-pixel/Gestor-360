@@ -1,0 +1,36 @@
+GESTORA 360 — PWA v4.00 (bilingüe español / English)
+
+CONTENIDO
+- index.html ............ la aplicación completa (diseño nuevo, panel de inicio, informes y traducción).
+- manifest.webmanifest .. configuración instalable (iconos nuevos, accesos directos a Facturar, Inventario e Informes).
+- service-worker.js ..... funcionamiento sin conexión después de la primera carga (caché v400).
+- icon.svg, icon-192.png, icon-512.png, icon-maskable-512.png, apple-touch-icon.png .. iconos nuevos.
+- importapro-logo.png ... logotipo anterior (se conserva por compatibilidad).
+
+CÓMO ACTUALIZAR
+1. Sube TODOS los archivos a la misma carpeta de tu hosting (HTTPS), reemplazando los anteriores.
+2. Abre la app una vez con conexión; la nueva versión se instala sola. Si ves la versión anterior, cierra y vuelve a abrir la app.
+3. Tus datos NO se pierden: la app usa las mismas claves de almacenamiento (importapro_*) y el mismo formato de respaldo .JSON.
+   Recomendado: antes de actualizar, descarga un respaldo desde "Respaldo y restauración".
+
+NOVEDADES v4.00
+- Diseño nuevo: menú lateral con iconos (en celular: barra inferior + menú desplegable), encabezado con selector ES / EN.
+- Iconos nuevos en todo el sistema y nuevo icono de la app.
+- Inicio convertido en panel: ventas y compras del mes, valor del inventario, alertas de stock, gráfico de 6 meses,
+  composición del costo de la importación en curso, productos más vendidos y últimos movimientos.
+- Costos de importación: nuevo "Informe de la importación" visible (volumen, FOB, DAI, IVA, costo total, ventas, ganancia,
+  margen, tabla de impuestos por producto y barra de composición del costo). Se corrigió un error que detenía el cálculo
+  y el guardado automático.
+- Informes del negocio (8 informes con filtro de período): Ventas, Rentabilidad por producto, Ventas por cliente,
+  Compras y gastos, Entradas y salidas, Kardex por producto, Valor del inventario e Importaciones.
+  Cada uno se exporta a Excel (.xlsx real) o se imprime / guarda como PDF con los datos de la empresa.
+- Entradas de inventario: selector visual Entrada / Salida / Ajuste, botón "Registrar entrada" en Inicio y kardex.
+- Idioma: TODO el sistema cambia entre español e inglés con un toque, incluyendo mensajes, confirmaciones, ayuda,
+  facturas impresas y archivos CSV / Excel exportados. La preferencia se recuerda y se incluye en el respaldo.
+  Los datos que escribes (nombres de productos, clientes, notas) no se traducen.
+- Correcciones: exportación CSV de compras (faltaba la columna País), precio de venta en el CSV de productos,
+  botón "Copiar resumen" y la consulta "Todos los módulos" de Reportes.
+
+NOTA
+Las cifras son estimaciones basadas en los datos registrados. Los documentos no son facturación electrónica (DTE).
+Verifica impuestos y requisitos con tu contador o agente aduanal.
