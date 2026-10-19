@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gestora360-pwa-v400';
+const CACHE_NAME = 'gestora360-pwa-v401';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './importapro-logo.png'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 self.addEventListener('install', event => {

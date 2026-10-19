@@ -46,7 +46,7 @@ a{color:var(--teal)}
 
 /* ---------- Shell ---------- */
 .g-shell{min-height:100vh;background:linear-gradient(90deg,var(--ink) var(--sidebar),transparent 0);display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr)}
-.g-sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#C9D4E2;padding:18px 14px 24px;display:flex;flex-direction:column;gap:6px;z-index:40}
+.g-sidebar{position:sticky;top:0;height:100vh;height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:var(--ink);color:#C9D4E2;padding:calc(18px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:6px;z-index:40}
 .g-brand{display:flex;align-items:center;gap:12px;padding:4px 8px 18px;color:#fff;text-decoration:none}
 .g-brand img{width:42px;height:42px;border-radius:11px}
 .g-brand b{display:block;font-size:19px;font-weight:700;font-stretch:112%;letter-spacing:-.01em;line-height:1.1}
@@ -64,7 +64,7 @@ a{color:var(--teal)}
 .g-sidebar-foot b{color:#C9D4E2;font-weight:600}
 
 .g-main{min-width:0;display:flex;flex-direction:column}
-.g-topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;padding:12px 32px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.g-topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) max(32px,env(safe-area-inset-right,0px)) 12px 32px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .g-topbar .g-crumb{display:flex;align-items:center;gap:10px;min-width:0;font-weight:600;font-size:15px}
 .g-crumb .g-crumb-ico{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--teal-wash);color:var(--teal)}
 .g-crumb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -238,7 +238,10 @@ td input{min-height:36px;padding:6px 8px}
 
 /* ---------- Reports ---------- */
 .g-filterbar{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);margin:12px 0 16px}
-.g-filterbar > div{min-width:160px;flex:1}
+.g-filterbar > div{min-width:min(160px,100%);flex:1 1 160px}
+input[type="date"]{min-width:0;max-width:100%;display:block;-webkit-appearance:none;appearance:none;text-align:left}
+input[type="date"]::-webkit-date-and-time-value{text-align:left;min-height:1.3em}
+.fields > div,.g-filterbar > div{min-width:0}
 .g-filterbar .actions{margin:0;flex:0 0 auto}
 .g-presets{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 4px}
 .g-presets button{min-height:34px;padding:6px 12px;font-size:13px;border-radius:999px}
@@ -296,6 +299,9 @@ td.num,th.num{text-align:right;white-space:nowrap}
 .g-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:10000;display:flex;gap:10px;align-items:center;max-width:calc(100vw - 32px)}
 .g-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
+.g-statusbar-fix .g-topbar{padding-top:52px!important}
+.g-statusbar-fix .g-sidebar{padding-top:60px!important}
+
 /* ---------- Print area for reports ---------- */
 #gPrintArea{display:none}
 @media print{
@@ -324,12 +330,14 @@ td.num,th.num{text-align:right;white-space:nowrap}
   .g-shell{display:block;background:none}
   .g-sidebar{position:fixed;left:0;top:0;bottom:0;width:min(300px,86vw);transform:translateX(-102%);transition:transform .22s ease}
   body.g-drawer .g-sidebar{transform:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
-  body.g-drawer .g-scrim{display:block;position:fixed;inset:0;background:rgba(18,38,63,.45);z-index:35}
+  body.g-drawer .g-scrim{display:block;position:fixed;inset:0;background:rgba(18,38,63,.45);z-index:45}
+  body.g-drawer{overflow:hidden}
+  .g-sidebar{z-index:50}
   .g-menubtn{display:grid}
-  .g-topbar{padding:10px 16px}
+  .g-topbar{padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
   .g-topbar .g-company{display:none}
-  main{padding:18px 16px calc(96px + env(safe-area-inset-bottom))}
-  .g-tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  main{padding:18px max(16px,env(safe-area-inset-right,0px)) calc(96px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .g-tabbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
   .g-tabbar button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;border-radius:10px;font:600 11px/1.1 var(--font);color:var(--ink-3);text-align:center}
   .g-tabbar button .ico{width:22px;height:22px}
   .g-tabbar button[aria-current="page"]{color:var(--teal)}
@@ -777,6 +785,7 @@ tr.g-qhead th{background:#EEF3F2;color:var(--ink-2);font-size:12.5px;text-align:
  <button type="button" data-page-go="page-inventory"><svg class="ico"><use href="#i-boxes"/></svg>Inventario</button>
  <button type="button" data-page-go="page-billing"><svg class="ico"><use href="#i-receipt"/></svg>Facturar</button>
  <button type="button" data-page-go="page-reports"><svg class="ico"><use href="#i-chart"/></svg>Informes</button>
+ <button type="button" id="gTabMenu" aria-controls="gSidebar" aria-expanded="false"><svg class="ico"><use href="#i-menu"/></svg>Menú</button>
 </nav>
 <script>
 /* Gestora 360 — motor de idioma español / inglés.
@@ -2111,7 +2120,7 @@ function updateChrome(pageId){
   document.title=(pageId==="page-home"?"":L(m[1],m[2])+" · ")+"Gestora 360";
   closeDrawer();
 }
-function closeDrawer(){document.body.classList.remove("g-drawer");$id("gMenuBtn")?.setAttribute("aria-expanded","false");}
+function closeDrawer(){document.body.classList.remove("g-drawer");["gMenuBtn","gTabMenu"].forEach(i=>$id(i)?.setAttribute("aria-expanded","false"));}
 function currentPage(){return document.querySelector(".app-page.active")?.id||"page-home";}
 function onPage(pageId){
   updateChrome(pageId);
@@ -2141,7 +2150,19 @@ function goEntry(){if(typeof showPage==="function")showPage("page-inventory");se
 
 /* ---------- Inicialización ---------- */
 function wrap(name,after){const f=window[name];if(typeof f!=="function"||f.__g360)return;const w=function(){const r=f.apply(this,arguments);try{after.apply(this,arguments);}catch(e){console.error(e);}return r;};w.__g360=true;window[name]=w;}
+function safeAreaFallback(){
+  // Algunas vistas de iPhone dibujan la página bajo la barra de estado sin informar env(safe-area-inset-top).
+  try{
+    const probe=document.createElement("div");probe.style.cssText="position:fixed;top:0;left:0;visibility:hidden;padding-top:env(safe-area-inset-top,0px)";document.body.appendChild(probe);
+    const inset=parseFloat(getComputedStyle(probe).paddingTop)||0;probe.remove();
+    const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+    const full=Math.abs(window.innerHeight-screen.height)<2||Math.abs(window.innerHeight-screen.width)<2;
+    const standalone=window.navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;
+    if(ios&&inset<1&&(full||standalone))document.documentElement.classList.add("g-statusbar-fix");
+  }catch(e){}
+}
 function init(){
+  safeAreaFallback();
   decorateHeadings();decorateButtons();setupMovementType();
   wrap("showPage",id=>onPage(document.querySelector(".app-page.active")?.id||id));
   wrap("calc",()=>{renderCostsExtras();});
@@ -2154,7 +2175,8 @@ function init(){
     if(e.target.closest("[data-g-entry]"))goEntry();
     if(e.target.closest("[data-brand-home]")){e.preventDefault();showPage("page-home");}
   });
-  $id("gMenuBtn")?.addEventListener("click",()=>{const on=!document.body.classList.contains("g-drawer");document.body.classList.toggle("g-drawer",on);$id("gMenuBtn").setAttribute("aria-expanded",String(on));});
+  const toggleDrawer=()=>{const on=!document.body.classList.contains("g-drawer");document.body.classList.toggle("g-drawer",on);["gMenuBtn","gTabMenu"].forEach(i=>$id(i)?.setAttribute("aria-expanded",String(on)));if(on)document.querySelector(".app-navigation button")?.focus({preventScroll:true});};
+  $id("gMenuBtn")?.addEventListener("click",toggleDrawer);$id("gTabMenu")?.addEventListener("click",toggleDrawer);
   $id("gScrim")?.addEventListener("click",closeDrawer);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();const hm=$id("helpModal");if(hm&&hm.style.display==="block")hm.style.display="none";}});
   // Idioma
